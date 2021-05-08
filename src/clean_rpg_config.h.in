@@ -1,0 +1,5 @@
+// Configuration options for Clean RPG.
+
+#define CLEAN_RPG_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
+#define CLEAN_RPG_VERSION_MINOR @clean_rpg_VERSION_MINOR@
+#define CLEAN_RPG_VERSION_PATCH @clean_rpg_VERSION_PATCH@
