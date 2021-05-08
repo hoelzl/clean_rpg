@@ -7,10 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 configure_file(src/clean_rpg_config.hpp.in clean_rpg_config.hpp)
 
+set(BUILD_SHARED_LIBS False)
 add_subdirectory(libs/sfml)
 
-add_executable(clean_rpg src/clean_rpg.cpp src/wrappers/window.h)
+add_executable(clean_rpg src/clean_rpg.cpp)
 target_include_directories(clean_rpg PUBLIC "${PROJECT_BINARY_DIR}")
 target_link_libraries(clean_rpg sfml-graphics)
 target_link_libraries(clean_rpg sfml-audio)
+target_link_libraries(clean_rpg sfml-system)
+target_link_libraries(clean_rpg sfml-window)
+target_link_libraries(clean_rpg sfml-main)
 
