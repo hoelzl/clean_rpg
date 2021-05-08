@@ -1,5 +1,7 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
+#include <clean_rpg_config.hpp>
 #include <iostream>
-#include <clean_rpg_config.h>
 
 int main()
 {

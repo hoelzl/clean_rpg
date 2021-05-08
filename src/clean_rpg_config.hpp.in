@@ -1,3 +1,5 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
 // Configuration options for Clean RPG.
 
 #define CLEAN_RPG_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
