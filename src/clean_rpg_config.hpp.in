@@ -1,7 +1,25 @@
 // Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
 
 // Configuration options for Clean RPG.
+#ifndef CLEAN_RPG_GEN_CLEAN_RPG_CONFIG_HPP
+#define CLEAN_RPG_GEN_CLEAN_RPG_CONFIG_HPP
 
+#include <string>
+
+// @formatter:off
 #define CLEAN_RPG_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
 #define CLEAN_RPG_VERSION_MINOR @clean_rpg_VERSION_MINOR@
 #define CLEAN_RPG_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+// @formatter:on
+
+struct CleanRpgVersion {
+  static inline unsigned int major{CLEAN_RPG_VERSION_MAJOR};
+  static inline unsigned int minor{CLEAN_RPG_VERSION_MINOR};
+  static inline unsigned int patch{CLEAN_RPG_VERSION_PATCH};
+
+  [[nodiscard]] static std::string version_string() const {
+    return std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
+  }
+};
+
+#endif
