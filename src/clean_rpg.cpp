@@ -12,5 +12,6 @@ void printProgramInfo() {
 int main() {
   printProgramInfo();
   cr::App app{};
+  app.loadResources();
   return app.runEventLoop();
 }

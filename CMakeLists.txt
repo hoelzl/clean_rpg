@@ -10,7 +10,7 @@ configure_file(src/clean_rpg_config.hpp.in clean_rpg_config.hpp)
 set(BUILD_SHARED_LIBS False)
 add_subdirectory(libs/sfml)
 
-add_executable(clean_rpg src/clean_rpg.cpp src/app/app.cpp src/app/app.hpp)
+add_executable(clean_rpg src/clean_rpg.cpp src/app/app.cpp src/app/app.hpp src/app/event_dispatcher.cpp src/app/event_dispatcher.hpp src/app/resource_manager.cpp src/app/resource_manager.hpp)
 target_include_directories(clean_rpg PUBLIC src "${PROJECT_BINARY_DIR}")
 target_link_libraries(clean_rpg sfml-graphics)
 target_link_libraries(clean_rpg sfml-audio)
