@@ -17,8 +17,9 @@ struct CleanRpgVersion {
   static inline unsigned int minor{CLEAN_RPG_VERSION_MINOR};
   static inline unsigned int patch{CLEAN_RPG_VERSION_PATCH};
 
-  [[nodiscard]] static std::string version_string() const {
-    return std::to_string(major) + "." + std::to_string(minor) + "." + std::to_string(patch);
+  static std::string version_string() {
+    return std::to_string(major) + "." + std::to_string(minor) + "." +
+           std::to_string(patch);
   }
 };
 
