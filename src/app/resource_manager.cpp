@@ -8,7 +8,7 @@ sf::Color ResourceManager::randomColor() {
   return sf::Color{randomColorValue(), randomColorValue(), randomColorValue()};
 }
 
-void      ResourceManager::loadResources() {}
+void ResourceManager::loadResources() {}
 
 sf::Uint8 ResourceManager::randomColorValue() {
   return static_cast<sf::Uint8>(random_color_distribution(random_engine));

@@ -12,10 +12,10 @@ class ResourceManager {
 public:
   sf::Color randomColor();
 
-  void      loadResources();
+  void loadResources();
 
 private:
-  sf::Uint8                                     randomColorValue();
+  sf::Uint8 randomColorValue();
 
   std::random_device                            rd{};
   std::default_random_engine                    random_engine{rd()};

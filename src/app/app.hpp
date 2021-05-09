@@ -15,28 +15,28 @@ public:
   explicit App(unsigned int width = 800, unsigned int height = 600,
                const std::string &title = "Clean RPG");
 
-  void              loadResources();
+  void loadResources();
 
   sf::RenderWindow &getMainWindow() { return mainWindow; }
 
-  ResourceManager & getResourceManager() { return resourceManager; }
+  ResourceManager &getResourceManager() { return resourceManager; }
 
-  sf::Color         getBackgroundColor() const { return backgroundColor; }
+  sf::Color getBackgroundColor() const { return backgroundColor; }
 
   void setBackgroundColor(sf::Color color) { backgroundColor = color; }
 
-  int  runEventLoop();
+  int runEventLoop();
 
   void close();
 
 private:
-  void             setWindowParameters();
+  void setWindowParameters();
 
-  void             processPendingEvents();
+  void processPendingEvents();
 
-  void             dispatchEvent(const sf::Event &event);
+  void dispatchEvent(const sf::Event &event);
 
-  void             renderNextFrame();
+  void renderNextFrame();
 
   EventDispatcher  eventDispatcher{*this};
   ResourceManager  resourceManager{};

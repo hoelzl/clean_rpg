@@ -17,33 +17,33 @@ public:
   void dispatchEvent(const sf::Event &event);
 
 private:
-  void             handleCloseEvent(const sf::Event &event);
+  void handleCloseEvent(const sf::Event &event);
 
-  void             handleResizedEvent(const sf::Event &event);
+  void handleResizedEvent(const sf::Event &event);
 
-  void             handleLostFocusEvent(const sf::Event &event);
+  void handleLostFocusEvent(const sf::Event &event);
 
-  void             handleGainedFocusEvent(const sf::Event &event);
+  void handleGainedFocusEvent(const sf::Event &event);
 
-  static void      handleTextEnteredEvent(const sf::Event &event);
+  static void handleTextEnteredEvent(const sf::Event &event);
 
-  static void      handleKeyPressedEvent(const sf::Event &event);
+  static void handleKeyPressedEvent(const sf::Event &event);
 
-  static void      handleKeyReleasedEvent(const sf::Event &event);
+  static void handleKeyReleasedEvent(const sf::Event &event);
 
-  static void      handleMouseWheelScrolledEvent(const sf::Event &event);
+  static void handleMouseWheelScrolledEvent(const sf::Event &event);
 
-  static void      handleMouseButtonPressedEvent(const sf::Event &event);
+  static void handleMouseButtonPressedEvent(const sf::Event &event);
 
-  static void      handleMouseButtonReleasedEvent(const sf::Event &event);
+  static void handleMouseButtonReleasedEvent(const sf::Event &event);
 
-  static void      handleMouseMovedEvent(const sf::Event &event);
+  static void handleMouseMovedEvent(const sf::Event &event);
 
-  void             handleMouseEnteredEvent(const sf::Event &event);
+  void handleMouseEnteredEvent(const sf::Event &event);
 
-  void             handleMouseLeftEvent(const sf::Event &event);
+  void handleMouseLeftEvent(const sf::Event &event);
 
-  static void      handleUnknownEvent(const sf::Event &event);
+  static void handleUnknownEvent(const sf::Event &event);
 
   App &            app;
   ResourceManager &resourceManager;
