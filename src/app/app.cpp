@@ -12,7 +12,7 @@ App::App(unsigned int width, unsigned int height, const std::string &title)
 
 void App::loadResources() {
   resourceManager.loadResources();
-  std::cout << "Loading resources" << std::endl;
+  sprite = &resourceManager.getSprite();
 }
 
 int App::runEventLoop() {
@@ -43,6 +43,9 @@ void App::dispatchEvent(const sf::Event &event) {
 
 void App::renderNextFrame() {
   mainWindow.clear(backgroundColor);
+  if (sprite) {
+    mainWindow.draw(*sprite);
+  }
   mainWindow.display();
 }
 

@@ -37,7 +37,7 @@ private:
 
   static void handleMouseButtonReleasedEvent(const sf::Event &event);
 
-  static void handleMouseMovedEvent(const sf::Event &event);
+  void handleMouseMovedEvent(const sf::Event &event);
 
   void handleMouseEnteredEvent(const sf::Event &event);
 

@@ -102,12 +102,14 @@ void EventDispatcher::handleMouseButtonReleasedEvent(const sf::Event &event) {
   std::cout << "Handling mouse button released event." << std::endl;
 }
 
+float convertCoordinate(int coord, int max = 600) {
+  return static_cast<float>(std::clamp(coord, 50, max));
+}
+
 void EventDispatcher::handleMouseMovedEvent(const sf::Event &event) {
-  // Disable reporting of mouse move events for now, since they tend to
-  // crowd out all other events.
-  //  std::cout << "Handling mouse moved event." << std::endl;
-  //  std::cout << "  mouse x: " << event.mouseMove.x
-  //            << ", mouse y: " << event.mouseMove.y << std::endl;
+  auto &sprite{app.getResourceManager().getSprite()};
+  sprite.setPosition(convertCoordinate(event.mouseMove.x, 450),
+                     convertCoordinate(event.mouseMove.y, 150));
 }
 
 void EventDispatcher::handleMouseEnteredEvent(const sf::Event &event) {

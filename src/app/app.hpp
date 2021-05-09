@@ -42,6 +42,7 @@ private:
   ResourceManager  resourceManager{};
   sf::RenderWindow mainWindow;
   sf::Color        backgroundColor = sf::Color::Black;
+  sf::Sprite *     sprite{};
 };
 } // namespace cr
 
