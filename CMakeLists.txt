@@ -10,7 +10,7 @@ configure_file(clean_rpg/clean_rpg_config.hpp.in clean_rpg_config.hpp)
 set(BUILD_SHARED_LIBS False)
 add_subdirectory(libs/sfml)
 
-add_executable(clean_rpg clean_rpg/clean_rpg.cpp clean_rpg/app/app.cpp clean_rpg/app/app.hpp clean_rpg/app/event_dispatcher.cpp clean_rpg/app/event_dispatcher.hpp clean_rpg/app/resource_manager.cpp clean_rpg/app/resource_manager.hpp)
+add_executable(clean_rpg clean_rpg/clean_rpg.cpp clean_rpg/app/app.cpp clean_rpg/app/app.hpp clean_rpg/app/event_dispatcher.cpp clean_rpg/app/event_dispatcher.hpp clean_rpg/app/resource_manager.cpp clean_rpg/app/resource_manager.hpp clean_rpg/app/random_number_generator.cpp clean_rpg/app/random_number_generator.hpp)
 target_include_directories(clean_rpg PUBLIC clean_rpg "${PROJECT_BINARY_DIR}")
 target_link_libraries(clean_rpg sfml-graphics)
 target_link_libraries(clean_rpg sfml-audio)

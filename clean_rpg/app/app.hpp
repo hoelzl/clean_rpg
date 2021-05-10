@@ -13,17 +13,19 @@ namespace cr {
 class App {
 public:
   explicit App(unsigned int width = 800, unsigned int height = 600,
-               const std::string &title = "Clean RPG");
+               const std::string& title = "Clean RPG");
 
   void loadResources();
 
-  sf::RenderWindow &getMainWindow() { return mainWindow; }
+  sf::RenderWindow& getMainWindow() { return mainWindow; }
 
-  ResourceManager &getResourceManager() { return resourceManager; }
+  ResourceManager& getResourceManager() { return resourceManager; }
 
   sf::Color getBackgroundColor() const { return backgroundColor; }
 
   void setBackgroundColor(sf::Color color) { backgroundColor = color; }
+
+  void moveHead(float newX, float newY);
 
   int runEventLoop();
 
@@ -34,15 +36,17 @@ private:
 
   void processPendingEvents();
 
-  void dispatchEvent(const sf::Event &event);
+  void dispatchEvent(const sf::Event& event);
 
   void renderNextFrame();
 
-  EventDispatcher  eventDispatcher{*this};
-  ResourceManager  resourceManager{};
+  EventDispatcher       eventDispatcher{*this};
+  ResourceManager       resourceManager{};
+  RandomNumberGenerator rng{};
+
   sf::RenderWindow mainWindow;
   sf::Color        backgroundColor = sf::Color::Black;
-  sf::Sprite *     sprite{};
+  sf::Sprite*      sprite{};
 };
 } // namespace cr
 

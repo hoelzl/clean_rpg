@@ -5,14 +5,24 @@
 
 namespace cr {
 
-App::App(unsigned int width, unsigned int height, const std::string &title)
+App::App(unsigned int width, unsigned int height, const std::string& title)
     : mainWindow{sf::VideoMode{width, height}, title} {
   setWindowParameters();
 }
 
 void App::loadResources() {
-  resourceManager.loadResources();
-  sprite = &resourceManager.getSprite();
+  resourceManager.addSprite("head", "head.png", 300.f, 100.f);
+  sprite = &resourceManager.getSprite("head");
+}
+
+float convertCoordinate(float coord, float max = 600.f) {
+  return std::clamp(coord, 50.f, max);
+}
+
+void App::moveHead(float newX, float newY) {
+  auto& sprite{getResourceManager().getSprite("head")};
+  sprite.setPosition(convertCoordinate(newX, 450.f),
+                     convertCoordinate(newY, 150.f));
 }
 
 int App::runEventLoop() {
@@ -26,7 +36,7 @@ int App::runEventLoop() {
 void App::close() { mainWindow.close(); }
 
 void App::setWindowParameters() {
-  backgroundColor = resourceManager.randomColor();
+  backgroundColor = rng.randomColor();
   mainWindow.setVerticalSyncEnabled(true);
 }
 
@@ -37,7 +47,7 @@ void App::processPendingEvents() {
   }
 }
 
-void App::dispatchEvent(const sf::Event &event) {
+void App::dispatchEvent(const sf::Event& event) {
   eventDispatcher.dispatchEvent(event);
 }
 
