@@ -2,7 +2,9 @@
 
 #include "app/app.hpp"
 #include "clean_rpg_app.hpp"
+#include "clean_rpg_app_config.hpp"
 #include "clean_rpg_config.hpp"
+#include "clean_rpg_event_dispatcher.hpp"
 #include <iostream>
 
 void printProgramInfo() {
@@ -12,8 +14,9 @@ void printProgramInfo() {
 
 int main() {
   printProgramInfo();
-  cg::AppConfig<cg::EventDispatcher> ac{};
-  CleanRpgApp                        app{ac};
+  std::unique_ptr<cg::AppConfig<cr::CleanRpgApp>> ac{
+      std::make_unique<cr::CleanRpgAppConfig>()};
+  cr::CleanRpgApp app{std::move(ac)};
   app.init();
   return app.runEventLoop();
 }

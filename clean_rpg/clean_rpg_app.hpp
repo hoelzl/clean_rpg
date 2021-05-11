@@ -5,9 +5,12 @@
 
 #include "app/app.hpp"
 
-class CleanRpgApp : public cg::App {
+namespace cr {
+class CleanRpgEventDispatcher;
+
+class CleanRpgApp : public cg::App<CleanRpgApp> {
 public:
-  using cg::App::App;
+  using cg::App<CleanRpgApp>::App;
 
 protected:
   void loadResources() override;
@@ -16,5 +19,6 @@ protected:
 private:
   sf::Sprite* sprite{};
 };
+} // namespace cr
 
 #endif // CLEAN_RPG_CLEAN_RPG_APP_HPP

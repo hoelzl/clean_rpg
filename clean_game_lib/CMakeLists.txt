@@ -4,14 +4,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_library(clean-game
-        app/app.cpp
         app/app.hpp
         app/event_dispatcher.cpp
         app/event_dispatcher.hpp
         app/resource_manager.cpp
         app/resource_manager.hpp
-        app/random_number_generator.cpp
-        app/random_number_generator.hpp)
+        util/random_number_generator.cpp
+        util/random_number_generator.hpp)
 target_link_libraries(clean-game sfml-graphics)
 target_link_libraries(clean-game sfml-audio)
 target_link_libraries(clean-game sfml-system)
