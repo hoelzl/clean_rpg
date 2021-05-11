@@ -2,11 +2,14 @@
 
 #include "event_dispatcher.hpp"
 #include "app.hpp"
+#include <cassert>
 #include <iostream>
 
 namespace cg {
 
 void EventDispatcherBase::dispatchEvent(const sf::Event& event) {
+  assert(isInitialized);
+
   switch (event.type) {
   case sf::Event::Closed:
     handleCloseEvent(event);

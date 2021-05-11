@@ -4,6 +4,7 @@
 #define CLEAN_RPG_APP_APP_HPP
 
 #include "SFML/Graphics.hpp"
+#include "app/app_config.hpp"
 #include "event_dispatcher.hpp"
 #include "resource_manager.hpp"
 #include "util/random_number_generator.hpp"
@@ -12,32 +13,13 @@
 
 namespace cg {
 
-template <typename AppT>
-struct AppConfig {
-  unsigned int width  = 800;
-  unsigned int height = 600;
-  std::string  title  = "Clean Game";
-
-  virtual std::unique_ptr<EventDispatcher<AppT>>
-  createEventDispatcher(AppT& app) {
-    return std::make_unique<EventDispatcher<AppT>>(app);
-  }
-};
-
 template <typename DerivedT>
 class App {
 public:
-  explicit App(std::unique_ptr<AppConfig<DerivedT>> ac)
-      : appConfig{std::move(ac)},
-        mainWindow{sf::VideoMode{appConfig->width, appConfig->height},
-                   appConfig->title} {}
-
-  virtual void init() {
-    eventDispatcher =
-        appConfig->createEventDispatcher(static_cast<DerivedT&>(*this));
-    setWindowParameters();
-    loadResources();
-    isInitialized = true;
+  static std::unique_ptr<DerivedT> create(AppConfig<DerivedT> ac) {
+    auto result{std::unique_ptr<DerivedT>{new DerivedT{ac}}};
+    result->init();
+    return result;
   }
 
   sf::RenderWindow& getMainWindow() { return mainWindow; };
@@ -50,19 +32,30 @@ public:
   void close();
 
 protected:
+  virtual void init() {
+    assert(eventDispatcher);
+    eventDispatcher->setApp(static_cast<DerivedT*>(this));
+    setWindowParameters();
+    loadResources();
+    isInitialized = true;
+  }
+
   virtual void setWindowParameters();
   virtual void loadResources();
 
   virtual void renderNextFrame();
 
 private:
+  explicit App(AppConfig<DerivedT>& ac)
+      : eventDispatcher{std::move(ac.eventDispatcher)},
+        mainWindow{sf::VideoMode{ac.width, ac.height}, ac.title} {}
+
   void processPendingEvents();
   void dispatchEvent(const sf::Event& event);
 
   bool isInitialized{false};
 
-  std::unique_ptr<AppConfig<DerivedT>> appConfig{};
-  std::unique_ptr<EventDispatcherBase> eventDispatcher{};
+  std::unique_ptr<EventDispatcher<DerivedT>> eventDispatcher{};
 
   ResourceManager       resourceManager{};
   RandomNumberGenerator rng{};

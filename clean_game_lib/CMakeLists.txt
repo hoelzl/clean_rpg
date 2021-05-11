@@ -10,7 +10,7 @@ add_library(clean-game
         app/resource_manager.cpp
         app/resource_manager.hpp
         util/random_number_generator.cpp
-        util/random_number_generator.hpp)
+        util/random_number_generator.hpp app/app_config.hpp)
 target_link_libraries(clean-game sfml-graphics)
 target_link_libraries(clean-game sfml-audio)
 target_link_libraries(clean-game sfml-system)

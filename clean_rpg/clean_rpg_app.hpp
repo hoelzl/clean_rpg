@@ -13,8 +13,13 @@ public:
   using cg::App<CleanRpgApp>::App;
 
   void moveHead(float newX, float newY) {
-    sprite->setPosition(convertCoordinate(newX, 450.f),
-                        convertCoordinate(newY, 150.f));
+    sf::Vector2<unsigned int> windowSize{getMainWindow().getSize()};
+    sf::Rect<float>           spriteBounds{sprite->getLocalBounds()};
+    sprite->setPosition(
+        convertCoordinate(newX, static_cast<float>(windowSize.x) -
+                                    spriteBounds.width),
+        convertCoordinate(newY, static_cast<float>(windowSize.y) -
+                                    spriteBounds.height));
   }
 
 protected:
@@ -25,7 +30,7 @@ private:
   sf::Sprite* sprite{};
 
   static float convertCoordinate(float coord, float max = 600.f) {
-    return std::clamp(coord, 50.f, max);
+    return std::clamp(coord, 0.f, max);
   }
 };
 } // namespace cr

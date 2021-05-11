@@ -27,20 +27,27 @@ protected:
   virtual void handleMouseEnteredEvent(const sf::Event& event);
   virtual void handleMouseLeftEvent(const sf::Event& event);
   virtual void handleUnknownEvent(const sf::Event& event);
+
+  bool isInitialized{true};
 };
 
 template <typename AppT>
 class EventDispatcher : public EventDispatcherBase {
 public:
-  explicit EventDispatcher(AppT& app) : app{app} {};
+  EventDispatcher() { isInitialized = false; }
+
+  void setApp(AppT* newApp) {
+    app           = newApp;
+    isInitialized = true;
+  }
+
+  AppT* getApp() { return app; }
 
 protected:
-  AppT& getApp() { return app; }
-
-  void handleCloseEvent(const sf::Event& event) override { getApp().close(); }
+  void handleCloseEvent(const sf::Event& event) override { getApp()->close(); }
 
 private:
-  AppT& app;
+  AppT* app;
 };
 
 } // namespace cg
