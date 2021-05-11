@@ -47,6 +47,11 @@ ResourceManager& ResourceManager::addFont(const std::string& name,
   path fontPath{getFontPath() / relative_path};
   std::cout << "Loading font from " << fontPath << std::endl;
   sf::Font font;
+  if (!font.loadFromFile(fontPath.string())) {
+    std::cerr << "Could not load font!" << std::endl;
+  } else {
+    fonts[name] = font;
+  }
   return *this;
 }
 
@@ -67,5 +72,8 @@ sf::Texture& ResourceManager::getTexture(const std::string& name) {
 
 sf::Sprite& ResourceManager::getSprite(const std::string& name) {
   return sprites.at(name);
+}
+sf::Font& ResourceManager::getFont(const std::string& name) {
+  return fonts.at(name);
 }
 } // namespace cg

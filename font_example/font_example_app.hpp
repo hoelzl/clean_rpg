@@ -9,6 +9,16 @@ namespace fe {
 class FontExampleApp : public cg::App<FontExampleApp> {
 public:
   using cg::App<FontExampleApp>::App;
+  void init() override;
+
+protected:
+  void loadResources() override;
+
+private:
+  sf::Text text;
+
+protected:
+  void renderNextFrame() override;
 };
 } // namespace fe
 

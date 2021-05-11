@@ -26,6 +26,7 @@ public:
                            const std::string& relative_path);
   sf::Texture&     getTexture(const std::string& name);
   sf::Sprite&      getSprite(const std::string& name);
+  sf::Font&        getFont(const std::string& name);
 
 private:
   std::map<std::string, sf::Texture> textures{};
