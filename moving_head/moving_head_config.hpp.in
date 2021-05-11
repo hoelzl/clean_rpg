@@ -1,0 +1,28 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
+// Configuration options for the Moving Head example.
+#ifndef MOVING_HEAD_CONFIG_HPP
+#define MOVING_HEAD_CONFIG_HPP
+
+#include <string>
+
+// @formatter:off
+#define MOVING_HEAD_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
+#define MOVING_HEAD_VERSION_MINOR @clean_rpg_VERSION_MINOR@
+#define MOVING_HEAD_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+
+#define MOVING_HEAD_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+// @formatter:on
+
+struct MovingHeadVersion {
+  static inline unsigned int major{MOVING_HEAD_VERSION_MAJOR};
+  static inline unsigned int minor{MOVING_HEAD_VERSION_MINOR};
+  static inline unsigned int patch{MOVING_HEAD_VERSION_PATCH};
+
+  static std::string version_string() {
+    return std::to_string(major) + "." + std::to_string(minor) + "." +
+           std::to_string(patch);
+  }
+};
+
+#endif // MOVING_HEAD_CONFIG_HPP
