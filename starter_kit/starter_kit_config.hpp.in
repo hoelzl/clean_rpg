@@ -1,0 +1,28 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
+// Configuration options for the Moving Head example.
+#ifndef STARTER_KIT_CONFIG_HPP
+#define STARTER_KIT_CONFIG_HPP
+
+#include <string>
+
+// @formatter:off
+#define STARTER_KIT_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
+#define STARTER_KIT_VERSION_MINOR @clean_rpg_VERSION_MINOR@
+#define STARTER_KIT_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+
+#define STARTER_KIT_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+// @formatter:on
+
+struct StarterKitVersion {
+  static inline unsigned int major{STARTER_KIT_VERSION_MAJOR};
+  static inline unsigned int minor{STARTER_KIT_VERSION_MINOR};
+  static inline unsigned int patch{STARTER_KIT_VERSION_PATCH};
+
+  static std::string version_string() {
+    return std::to_string(major) + "." + std::to_string(minor) + "." +
+           std::to_string(patch);
+  }
+};
+
+#endif // STARTER_KIT_CONFIG_HPP
