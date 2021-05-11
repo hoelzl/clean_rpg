@@ -2,9 +2,10 @@
 
 #ifndef CLEAN_GAME_LIB_APP_APP_CONFIG_HPP
 #define CLEAN_GAME_LIB_APP_APP_CONFIG_HPP
-namespace cg {
 
 #include "event_dispatcher.hpp"
+
+namespace cg {
 
 template <typename AppT>
 class AppConfig {
