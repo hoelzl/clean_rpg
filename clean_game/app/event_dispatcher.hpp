@@ -1,0 +1,54 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
+#ifndef CLEAN_RPG_APP_EVENT_DISPATCHER_HPP
+#define CLEAN_RPG_APP_EVENT_DISPATCHER_HPP
+
+#include "SFML/Graphics.hpp"
+#include "random_number_generator.hpp"
+#include "resource_manager.hpp"
+
+namespace cg {
+
+class App;
+
+class EventDispatcher {
+public:
+  explicit EventDispatcher(App& app);
+
+  void dispatchEvent(const sf::Event& event);
+
+private:
+  virtual void handleCloseEvent(const sf::Event& event);
+
+  virtual void handleResizedEvent(const sf::Event& event);
+
+  virtual void handleLostFocusEvent(const sf::Event& event);
+
+  virtual void handleGainedFocusEvent(const sf::Event& event);
+
+  virtual void handleTextEnteredEvent(const sf::Event& event);
+
+  virtual void handleKeyPressedEvent(const sf::Event& event);
+
+  virtual void handleKeyReleasedEvent(const sf::Event& event);
+
+  virtual void handleMouseWheelScrolledEvent(const sf::Event& event);
+
+  virtual void handleMouseButtonPressedEvent(const sf::Event& event);
+
+  virtual void handleMouseButtonReleasedEvent(const sf::Event& event);
+
+  virtual void handleMouseMovedEvent(const sf::Event& event);
+
+  virtual void handleMouseEnteredEvent(const sf::Event& event);
+
+  virtual void handleMouseLeftEvent(const sf::Event& event);
+
+  virtual void handleUnknownEvent(const sf::Event& event);
+
+  App&                  app;
+  RandomNumberGenerator rng{};
+};
+
+} // namespace cg
+#endif // CLEAN_RPG_APP_EVENT_DISPATCHER_HPP

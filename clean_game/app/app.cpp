@@ -1,18 +1,15 @@
 // Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
 
 #include "app.hpp"
+#include <cassert>
 #include <iostream>
 
-namespace cr {
+namespace cg {
 
-App::App(unsigned int width, unsigned int height, const std::string& title)
-    : mainWindow{sf::VideoMode{width, height}, title} {
+void App::init() {
   setWindowParameters();
-}
-
-void App::loadResources() {
-  resourceManager.addSprite("head", "head.png", 300.f, 100.f);
-  sprite = &resourceManager.getSprite("head");
+  loadResources();
+  isInitialized = true;
 }
 
 float convertCoordinate(float coord, float max = 600.f) {
@@ -26,6 +23,7 @@ void App::moveHead(float newX, float newY) {
 }
 
 int App::runEventLoop() {
+  assert(isInitialized);
   while (mainWindow.isOpen()) {
     processPendingEvents();
     renderNextFrame();
@@ -40,6 +38,13 @@ void App::setWindowParameters() {
   mainWindow.setVerticalSyncEnabled(true);
 }
 
+void App::loadResources() {}
+
+void App::renderNextFrame() {
+  getMainWindow().clear(getBackgroundColor());
+  getMainWindow().display();
+}
+
 void App::processPendingEvents() {
   sf::Event event{};
   while (mainWindow.pollEvent(event)) {
@@ -48,15 +53,9 @@ void App::processPendingEvents() {
 }
 
 void App::dispatchEvent(const sf::Event& event) {
-  eventDispatcher.dispatchEvent(event);
-}
-
-void App::renderNextFrame() {
-  mainWindow.clear(backgroundColor);
-  if (sprite) {
-    mainWindow.draw(*sprite);
+  if (eventDispatcher) {
+    eventDispatcher->dispatchEvent(event);
   }
-  mainWindow.display();
 }
 
-} // namespace cr
+} // namespace cg

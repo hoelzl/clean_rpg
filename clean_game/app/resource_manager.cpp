@@ -5,7 +5,7 @@
 #include <iostream>
 #include <optional>
 
-namespace cr {
+namespace cg {
 
 using path = std::filesystem::path;
 
@@ -70,4 +70,4 @@ sf::Sprite& ResourceManager::getSprite(const std::string& name) {
   return sprites.at(name);
 }
 
-} // namespace cr
+} // namespace cg

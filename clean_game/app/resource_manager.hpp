@@ -9,7 +9,7 @@
 #include <map>
 #include <optional>
 
-namespace cr {
+namespace cg {
 
 class ResourceManager {
 public:
@@ -31,6 +31,6 @@ private:
   loadTexture(const std::string& relative_path);
 };
 
-} // namespace cr
+} // namespace cg
 
 #endif // CLEAN_RPG_APP_RESOURCE_MANAGER_HPP

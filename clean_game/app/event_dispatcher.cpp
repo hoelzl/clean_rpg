@@ -4,7 +4,7 @@
 #include "app.hpp"
 #include <iostream>
 
-namespace cr {
+namespace cg {
 EventDispatcher::EventDispatcher(App& app) : app{app} {}
 
 void EventDispatcher::dispatchEvent(const sf::Event& event) {
@@ -123,4 +123,4 @@ void EventDispatcher::handleUnknownEvent(const sf::Event& event) {
   std::cout << "Handling unknown event." << std::endl;
 }
 
-} // namespace cr
+} // namespace cg
