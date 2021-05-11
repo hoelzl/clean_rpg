@@ -12,6 +12,7 @@
 #define CLEAN_RPG_VERSION_PATCH @clean_rpg_VERSION_PATCH@
 
 #define CLEAN_RPG_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+#define CLEAN_RPG_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
 // @formatter:on
 
 struct CleanRpgVersion {

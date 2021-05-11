@@ -12,6 +12,7 @@
 #define MOVING_HEAD_VERSION_PATCH @clean_rpg_VERSION_PATCH@
 
 #define MOVING_HEAD_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+#define MOVING_HEAD_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
 // @formatter:on
 
 struct MovingHeadVersion {

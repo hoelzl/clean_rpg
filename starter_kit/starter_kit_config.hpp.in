@@ -12,6 +12,7 @@
 #define STARTER_KIT_VERSION_PATCH @clean_rpg_VERSION_PATCH@
 
 #define STARTER_KIT_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+#define STARTER_KIT_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
 // @formatter:on
 
 struct StarterKitVersion {
