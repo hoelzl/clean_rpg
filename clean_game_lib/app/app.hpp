@@ -46,10 +46,7 @@ public:
   sf::Color getBackgroundColor() const { return backgroundColor; }
   void      setBackgroundColor(sf::Color color) { backgroundColor = color; }
 
-  void moveHead(float newX, float newY);
-
-  int runEventLoop();
-
+  int  runEventLoop();
   void close();
 
 protected:
@@ -65,27 +62,14 @@ private:
   bool isInitialized{false};
 
   std::unique_ptr<AppConfig<DerivedT>> appConfig{};
-
   std::unique_ptr<EventDispatcherBase> eventDispatcher{};
 
-  ResourceManager resourceManager{};
-
+  ResourceManager       resourceManager{};
   RandomNumberGenerator rng{};
 
   sf::RenderWindow mainWindow;
   sf::Color        backgroundColor = sf::Color::Black;
 };
-
-inline float convertCoordinate(float coord, float max = 600.f) {
-  return std::clamp(coord, 50.f, max);
-}
-
-template <typename DerivedT>
-void App<DerivedT>::moveHead(float newX, float newY) {
-  auto& sprite{getResourceManager().getSprite("head")};
-  sprite.setPosition(convertCoordinate(newX, 450.f),
-                     convertCoordinate(newY, 150.f));
-}
 
 template <typename DerivedT>
 int App<DerivedT>::runEventLoop() {

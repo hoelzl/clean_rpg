@@ -12,12 +12,21 @@ class CleanRpgApp : public cg::App<CleanRpgApp> {
 public:
   using cg::App<CleanRpgApp>::App;
 
+  void moveHead(float newX, float newY) {
+    sprite->setPosition(convertCoordinate(newX, 450.f),
+                        convertCoordinate(newY, 150.f));
+  }
+
 protected:
   void loadResources() override;
   void renderNextFrame() override;
 
 private:
   sf::Sprite* sprite{};
+
+  static float convertCoordinate(float coord, float max = 600.f) {
+    return std::clamp(coord, 50.f, max);
+  }
 };
 } // namespace cr
 
