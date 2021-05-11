@@ -11,7 +11,8 @@ void printProgramInfo() {
             << " is up and running!" << std::endl;
 }
 
-void buildConfiguration(cg::DefaultAppConfigBuilder<cr::CleanRpgApp>& builder) {
+void createConfiguration(
+    cg::DefaultAppConfigBuilder<cr::CleanRpgApp>& builder) {
   builder.setEventDispatcher(std::make_unique<cr::CleanRpgEventDispatcher>())
       .setHeight(800)
       .setWidth(1200)
@@ -20,7 +21,7 @@ void buildConfiguration(cg::DefaultAppConfigBuilder<cr::CleanRpgApp>& builder) {
 int main() {
   printProgramInfo();
   cg::DefaultAppConfigBuilder<cr::CleanRpgApp> builder{};
-  buildConfiguration(builder);
+  createConfiguration(builder);
   std::unique_ptr<cr::CleanRpgApp> app{
       cr::CleanRpgApp::create(builder.getConfig())};
   return app->runEventLoop();

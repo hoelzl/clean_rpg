@@ -1,29 +1,40 @@
 // Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
 
 // Configuration options for the Moving Head example.
-#ifndef font_example_CONFIG_HPP
-#define font_example_CONFIG_HPP
+#ifndef FONT_EXAMPLE_CONFIG_HPP
+#define FONT_EXAMPLE_CONFIG_HPP
 
 #include <string>
 
 // @formatter:off
-#define font_example_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
-#define font_example_VERSION_MINOR @clean_rpg_VERSION_MINOR@
-#define font_example_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+// NOLINTNEXTLINE
+#define FONT_EXAMPLE_VERSION_MAJOR @font-example_VERSION_MAJOR@
+// NOLINTNEXTLINE
+#define FONT_EXAMPLE_VERSION_MINOR @font-example_VERSION_MINOR@
+// NOLINTNEXTLINE
+#define FONT_EXAMPLE_VERSION_PATCH @font-example_VERSION_PATCH@
 
-#define font_example_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
-#define font_example_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
+#define FONT_EXAMPLE_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+#define FONT_EXAMPLE_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
 // @formatter:on
 
 struct FontExampleVersion {
-  static inline unsigned int major{font_example_VERSION_MAJOR};
-  static inline unsigned int minor{font_example_VERSION_MINOR};
-  static inline unsigned int patch{font_example_VERSION_PATCH};
+  static inline unsigned int major{FONT_EXAMPLE_VERSION_MAJOR};
+  static inline unsigned int minor{FONT_EXAMPLE_VERSION_MINOR};
+  static inline unsigned int patch{FONT_EXAMPLE_VERSION_PATCH};
 
   static std::string version_string() {
     return std::to_string(major) + "." + std::to_string(minor) + "." +
            std::to_string(patch);
   }
+
+  [[maybe_unused]] static std::string getImgDir() {
+    return FONT_EXAMPLE_IMG_DIR;
+  }
+
+  [[maybe_unused]] static std::string getFontDir() {
+    return FONT_EXAMPLE_FONT_DIR;
+  }
 };
 
-#endif // font_example_CONFIG_HPP
+#endif // FONT_EXAMPLE_CONFIG_HPP

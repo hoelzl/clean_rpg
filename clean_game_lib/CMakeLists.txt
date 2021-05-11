@@ -1,9 +1,12 @@
-project(clean-game)
+project(clean-game-lib VERSION 0.0.3)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library(clean-game
+configure_file(clean_game_lib_config.hpp.in clean_game_lib_config.hpp)
+
+add_library(clean-game-lib
+        clean_game_lib_config.hpp
         app/app.hpp
         app/app_config.hpp
         app/event_dispatcher.cpp
@@ -12,8 +15,10 @@ add_library(clean-game
         app/resource_manager.hpp
         util/random_number_generator.cpp
         util/random_number_generator.hpp)
-target_link_libraries(clean-game sfml-graphics)
-target_link_libraries(clean-game sfml-audio)
-target_link_libraries(clean-game sfml-system)
-target_link_libraries(clean-game sfml-window)
-target_include_directories(clean-game PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(clean-game-lib sfml-graphics)
+target_link_libraries(clean-game-lib sfml-audio)
+target_link_libraries(clean-game-lib sfml-system)
+target_link_libraries(clean-game-lib sfml-window)
+target_include_directories(clean-game-lib PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${PROJECT_BINARY_DIR}")

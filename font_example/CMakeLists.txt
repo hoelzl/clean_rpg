@@ -1,4 +1,4 @@
-project(font-example)
+project(font-example VERSION 0.0.2)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -14,5 +14,5 @@ add_executable(font-example
 target_include_directories(font-example PUBLIC
         font_example
         "${PROJECT_BINARY_DIR}")
-target_link_libraries(font-example clean-game)
+target_link_libraries(font-example clean-game-lib)
 target_link_libraries(font-example sfml-main)

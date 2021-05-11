@@ -41,6 +41,11 @@ public:
     return static_cast<SelfT&>(*this);
   }
 
+  SelfT& setTitle(const std::string& t) {
+    config.title = t;
+    return static_cast<SelfT&>(*this);
+  }
+
   AppConfigT getConfig() { return std::move(config); }
 
 private:

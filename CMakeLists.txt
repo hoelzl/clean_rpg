@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
-project(clean-game-examples)
+project(clean-game-examples VERSION 0.0.1)
 
 set(BUILD_SHARED_LIBS False)
 

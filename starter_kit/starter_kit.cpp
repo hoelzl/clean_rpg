@@ -5,6 +5,9 @@
 #include "starter_kit_config.hpp"
 #include "starter_kit_event_dispatcher.hpp"
 #include <iostream>
+#include <string>
+
+using namespace std::literals::string_literals;
 
 void printProgramInfo() {
   std::cout << "Moving Head example Version "
@@ -12,17 +15,20 @@ void printProgramInfo() {
             << std::endl;
 }
 
-void buildConfiguration(
+void createConfiguration(
     cg::DefaultAppConfigBuilder<sk::StarterKitApp>& builder) {
-  builder.setEventDispatcher(std::make_unique<sk::StarterKitEventDispatcher>())
+  const std::string versionString = StarterKitVersion::version_string();
+  auto eventDispatcher{std::make_unique<sk::StarterKitEventDispatcher>()};
+  builder.setEventDispatcher(std::move(eventDispatcher))
       .setHeight(800)
       .setWidth(1200)
-      .setTitle("Starter Kit");
+      .setTitle("Starter Kit (Version "s + versionString + ")"s);
 }
+
 int main() {
   printProgramInfo();
   cg::DefaultAppConfigBuilder<sk::StarterKitApp> builder{};
-  buildConfiguration(builder);
+  createConfiguration(builder);
   std::unique_ptr<sk::StarterKitApp> app{
       sk::StarterKitApp::create(builder.getConfig())};
   return app->runEventLoop();

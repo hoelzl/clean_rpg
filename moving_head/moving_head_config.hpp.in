@@ -7,9 +7,12 @@
 #include <string>
 
 // @formatter:off
-#define MOVING_HEAD_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
-#define MOVING_HEAD_VERSION_MINOR @clean_rpg_VERSION_MINOR@
-#define MOVING_HEAD_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+// NOLINTNEXTLINE
+#define MOVING_HEAD_VERSION_MAJOR @moving-head_VERSION_MAJOR@
+// NOLINTNEXTLINE
+#define MOVING_HEAD_VERSION_MINOR @moving-head_VERSION_MINOR@
+// NOLINTNEXTLINE
+#define MOVING_HEAD_VERSION_PATCH @moving-head_VERSION_PATCH@
 
 #define MOVING_HEAD_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
 #define MOVING_HEAD_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
@@ -23,6 +26,14 @@ struct MovingHeadVersion {
   static std::string version_string() {
     return std::to_string(major) + "." + std::to_string(minor) + "." +
            std::to_string(patch);
+  }
+
+  [[maybe_unused]] static std::string getImgDir() {
+    return MOVING_HEAD_IMG_DIR;
+  }
+
+  [[maybe_unused]] static std::string getFontDir() {
+    return MOVING_HEAD_FONT_DIR;
   }
 };
 

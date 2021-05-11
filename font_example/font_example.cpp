@@ -6,6 +6,8 @@
 #include "font_example_event_dispatcher.hpp"
 #include <iostream>
 
+using namespace std::literals::string_literals;
+
 void printProgramInfo() {
   std::cout << "Font example Version " << FontExampleVersion::version_string()
             << " is up and running!" << std::endl;
@@ -13,10 +15,12 @@ void printProgramInfo() {
 
 void buildConfiguration(
     cg::DefaultAppConfigBuilder<fe::FontExampleApp>& builder) {
-  builder.setEventDispatcher(std::make_unique<fe::FontExampleEventDispatcher>())
+  auto eventDispatcher{std::make_unique<fe::FontExampleEventDispatcher>()};
+  builder.setEventDispatcher(std::move(eventDispatcher))
       .setHeight(800)
       .setWidth(1200)
-      .setTitle("Font Example");
+      .setTitle("Font Example (Version "s +
+                FontExampleVersion::version_string() + ")");
 }
 int main() {
   printProgramInfo();

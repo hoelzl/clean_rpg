@@ -1,6 +1,7 @@
 // Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
 
 #include "resource_manager.hpp"
+#include "clean_game_lib_config.hpp"
 #include <filesystem>
 #include <iostream>
 #include <optional>
@@ -9,19 +10,9 @@ namespace cg {
 
 using path = std::filesystem::path;
 
-path ResourceManager::getDataPath() {
-  path currentPath{std::filesystem::current_path()};
-  path img_path{currentPath / "img"};
-  if (exists(img_path)) {
-    return img_path;
-  } else {
-    path parentImgPath{currentPath.parent_path() / "img"};
-    if (exists(parentImgPath)) {
-      return parentImgPath;
-    }
-  }
-  return currentPath;
-}
+path ResourceManager::getImgPath() { return path{CLEAN_GAME_LIB_IMG_DIR}; }
+
+path ResourceManager::getFontPath() { return path{CLEAN_GAME_LIB_FONT_DIR}; }
 
 ResourceManager& ResourceManager::addTexture(const std::string& name,
                                              const std::string& relative_path) {
@@ -51,9 +42,17 @@ ResourceManager::addSprite(const std::string& name,
   return *this;
 }
 
+ResourceManager& ResourceManager::addFont(const std::string& name,
+                                          const std::string& relative_path) {
+  path fontPath{getFontPath() / relative_path};
+  std::cout << "Loading font from " << fontPath << std::endl;
+  sf::Font font;
+  return *this;
+}
+
 std::optional<sf::Texture>
 ResourceManager::loadTexture(const std::string& relative_path) {
-  std::filesystem::path imagePath{getDataPath() / relative_path};
+  path imagePath{getImgPath() / relative_path};
   std::cout << "Loading texture from " << imagePath << std::endl;
   sf::Texture texture{};
   if (!texture.loadFromFile(imagePath.string())) {
@@ -69,5 +68,4 @@ sf::Texture& ResourceManager::getTexture(const std::string& name) {
 sf::Sprite& ResourceManager::getSprite(const std::string& name) {
   return sprites.at(name);
 }
-
 } // namespace cg

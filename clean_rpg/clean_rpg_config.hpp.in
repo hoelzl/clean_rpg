@@ -7,9 +7,12 @@
 #include <string>
 
 // @formatter:off
-#define CLEAN_RPG_VERSION_MAJOR @clean_rpg_VERSION_MAJOR@
-#define CLEAN_RPG_VERSION_MINOR @clean_rpg_VERSION_MINOR@
-#define CLEAN_RPG_VERSION_PATCH @clean_rpg_VERSION_PATCH@
+// NOLINTNEXTLINE
+#define CLEAN_RPG_VERSION_MAJOR @clean-rpg_VERSION_MAJOR@
+// NOLINTNEXTLINE
+#define CLEAN_RPG_VERSION_MINOR @clean-rpg_VERSION_MINOR@
+// NOLINTNEXTLINE
+#define CLEAN_RPG_VERSION_PATCH @clean-rpg_VERSION_PATCH@
 
 #define CLEAN_RPG_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
 #define CLEAN_RPG_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
@@ -24,6 +27,13 @@ struct CleanRpgVersion {
     return std::to_string(major) + "." + std::to_string(minor) + "." +
            std::to_string(patch);
   }
-};
+
+  [[maybe_unused]] static std::string getImgDir() {
+    return CLEAN_RPG_IMG_DIR;
+  }
+
+  [[maybe_unused]] static std::string getFontDir() {
+    return CLEAN_RPG_FONT_DIR;
+  }};
 
 #endif // CLEAN_RPG_CONFIG_HPP

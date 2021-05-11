@@ -9,5 +9,5 @@ add_executable(clean-rpg clean_rpg.cpp clean_rpg_app.cpp clean_rpg_app.hpp clean
 target_include_directories(clean-rpg PUBLIC
         clean_rpg
         "${PROJECT_BINARY_DIR}")
-target_link_libraries(clean-rpg clean-game)
+target_link_libraries(clean-rpg clean-game-lib)
 target_link_libraries(clean-rpg sfml-main)

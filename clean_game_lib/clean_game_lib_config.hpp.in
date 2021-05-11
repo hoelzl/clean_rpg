@@ -1,0 +1,40 @@
+// Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
+
+// Configuration options for Clean RPG.
+#ifndef CLEAN_GAME_LIB_CONFIG_HPP
+#define CLEAN_GAME_LIB_CONFIG_HPP
+
+#include <string>
+
+// @formatter:off
+// NOLINTNEXTLINE
+#define CLEAN_GAME_LIB_VERSION_MAJOR @clean-game-lib_VERSION_MAJOR@
+// NOLINTNEXTLINE
+#define CLEAN_GAME_LIB_VERSION_MINOR @clean-game-lib_VERSION_MINOR@
+// NOLINTNEXTLINE
+#define CLEAN_GAME_LIB_VERSION_PATCH @clean-game-lib_VERSION_PATCH@
+
+#define CLEAN_GAME_LIB_IMG_DIR "@CMAKE_SOURCE_DIR@/img"
+#define CLEAN_GAME_LIB_FONT_DIR "@CMAKE_SOURCE_DIR@/font"
+// @formatter:on
+
+struct CleanRpgVersion {
+  static inline unsigned int major{CLEAN_GAME_LIB_VERSION_MAJOR};
+  static inline unsigned int minor{CLEAN_GAME_LIB_VERSION_MINOR};
+  static inline unsigned int patch{CLEAN_GAME_LIB_VERSION_PATCH};
+
+  static std::string version_string() {
+    return std::to_string(major) + "." + std::to_string(minor) + "." +
+           std::to_string(patch);
+  }
+
+  [[maybe_unused]] static std::string getImgDir() {
+    return CLEAN_GAME_LIB_IMG_DIR;
+  }
+
+  [[maybe_unused]] static std::string getFontDir() {
+    return CLEAN_GAME_LIB_FONT_DIR;
+  }
+};
+
+#endif // CLEAN_GAME_LIB_CONFIG_HPP
