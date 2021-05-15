@@ -6,6 +6,8 @@
 #include "clean_rpg_event_dispatcher.hpp"
 #include <iostream>
 
+#include "gridworld/map_data.hpp"
+
 void printProgramInfo() {
   std::cout << "Clean RPG Version " << CleanRpgVersion::version_string()
             << " is up and running!" << std::endl;
@@ -18,8 +20,35 @@ void createConfiguration(
       .setWidth(1200)
       .setTitle("Clean RPG");
 }
+
+void printArrayInfo() {
+  auto numLayers{cr::map_data::numLayers};
+  auto height{cr::map_data::layers[numLayers - 1].height()};
+  auto width{cr::map_data::layers[numLayers - 1].width()};
+  std::cout << "numLayers = " << numLayers << ", height = " << height
+            << ", width = " << width << std::endl;
+  std::cout << "Element: "
+            << cr::map_data::layers.at(numLayers - 1).at(width - 1, height - 1)
+            << std::endl;
+  long sum{0L};
+  for (int idx : cr::map_data::layers.at(numLayers - 1)) {
+    sum += idx;
+  }
+  std::cout << "Sum: " << sum << std::endl;
+}
+
+#ifdef USE_CONCEPTS
+void printUseConcepts() { std::cout << "We ARE using concepts." << std::endl; }
+#else
+void printUseConcepts() {
+  std::cout << "We are NOT using concepts." << std::endl;
+}
+#endif
+
 int main() {
   printProgramInfo();
+  printArrayInfo();
+  printUseConcepts();
   cg::DefaultAppConfigBuilder<cr::CleanRpgApp> builder{};
   createConfiguration(builder);
   std::unique_ptr<cr::CleanRpgApp> app{
