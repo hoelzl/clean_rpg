@@ -21,6 +21,15 @@ void createConfiguration(
       .setTitle("Clean RPG");
 }
 
+cr::Layer<2, 3> myLayer{{{{1, 2}, {3, 4}, {5, 6}}}};
+std::size_t     computeLayerSum() {
+  size_t sum{0L};
+  for (int idx : myLayer) {
+    sum += idx;
+  }
+  return sum;
+}
+
 void printArrayInfo() {
   auto numLayers{cr::map_data::numLayers};
   auto height{cr::map_data::layers[numLayers - 1].height()};
@@ -30,10 +39,7 @@ void printArrayInfo() {
   std::cout << "Element: "
             << cr::map_data::layers.at(numLayers - 1).at(width - 1, height - 1)
             << std::endl;
-  long sum{0L};
-  for (int idx : cr::map_data::layers.at(numLayers - 1)) {
-    sum += idx;
-  }
+  size_t sum{computeLayerSum()};
   std::cout << "Sum: " << sum << std::endl;
 }
 
