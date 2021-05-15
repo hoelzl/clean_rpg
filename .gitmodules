@@ -1,3 +1,6 @@
 [submodule "libs/sfml"]
 	path = libs/sfml
 	url = https://github.com/hoelzl/SFML.git
+[submodule "libs/catch2"]
+	path = libs/catch2
+	url = git@github.com:catchorg/Catch2.git
