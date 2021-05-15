@@ -23,10 +23,10 @@ public:
   static_assert(std::is_nothrow_copy_constructible_v<DataArray>);
   constexpr explicit Layer(const DataArray& da) noexcept : data{da} {}
 
-  [[nodiscard]] int at(unsigned int w, unsigned int h) const {
+  [[nodiscard]] int at(std::size_t w, std::size_t h) const {
     return data.at(h).at(w);
   }
-  [[nodiscard]] int& at(unsigned int w, unsigned int h) {
+  [[nodiscard]] int& at(std::size_t w, std::size_t h) {
     return data.at(h).at(w);
   }
 
@@ -36,9 +36,9 @@ public:
     return DimW * DimH;
   }
 
-  LayerIterator                begin() { return LayerIterator{&data}; }
+  LayerIterator begin() { return LayerIterator{&data}; }
   constexpr ConstLayerIterator begin() const { return LayerIterator{&data}; }
-  LayerIterator                end() { return LayerIterator{&data, 0, DimH}; }
+  LayerIterator end() { return LayerIterator{&data, 0, DimH}; }
   constexpr ConstLayerIterator end() const {
     return LayerIterator{&data, 0, DimH};
   }
@@ -62,12 +62,12 @@ private:
     using reference                          = value_type&;
     using const_reference [[maybe_unused]]   = const value_type&;
 
-    // Iterators must be constructable.
+    // Iterators must be constructible.
     explicit LayerIterator(DataArray* data, size_type posW = 0,
                            size_type posH = 0) noexcept
         : data{data}, posW{posW}, posH{posH} {}
 
-    // They must be copy constructable.
+    // They must be copy constructible.
     LayerIterator(const LayerIterator&) noexcept = default;
 
     // They need not have a move constructor, but they should.
@@ -86,7 +86,7 @@ private:
     // *, ->, ++ (pre- and postfix), == and !=.
 
     reference operator*() const { return data->at(posH).at(posW); }
-    pointer   operator->() const { return &*this; }
+    pointer operator->() const { return &*this; }
 
     LayerIterator& operator++() noexcept {
       if (posW < DimW - 1) {
@@ -117,7 +117,7 @@ private:
     }
 
   private:
-    DataArray*  data;
+    DataArray* data;
     std::size_t posW{0};
     std::size_t posH{0};
   };
@@ -138,8 +138,8 @@ private:
 
     // Iterators must be constructable.
     explicit constexpr ConstLayerIterator(const DataArray* data,
-                                          size_type        posW = 0,
-                                          size_type        posH = 0) noexcept
+                                          size_type posW = 0,
+                                          size_type posH = 0) noexcept
         : data{data}, posW{posW}, posH{posH} {}
 
     // They must be copy constructable.
@@ -197,7 +197,7 @@ private:
     }
 
   private:
-    DataArray*  data;
+    DataArray* data;
     std::size_t posW{0};
     std::size_t posH{0};
   };
