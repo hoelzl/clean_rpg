@@ -23,4 +23,3 @@ target_include_directories(clean-rpg PUBLIC
         clean_rpg
         "${PROJECT_BINARY_DIR}")
 target_link_libraries(clean-rpg clean-game-lib)
-target_link_libraries(clean-rpg sfml-main)

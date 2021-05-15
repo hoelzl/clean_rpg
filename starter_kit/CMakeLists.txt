@@ -15,4 +15,3 @@ target_include_directories(starter-kit PUBLIC
         starter_kit
         "${PROJECT_BINARY_DIR}")
 target_link_libraries(starter-kit clean-game-lib)
-target_link_libraries(starter-kit sfml-main)

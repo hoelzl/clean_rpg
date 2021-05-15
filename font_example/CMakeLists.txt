@@ -15,4 +15,3 @@ target_include_directories(font-example PUBLIC
         font_example
         "${PROJECT_BINARY_DIR}")
 target_link_libraries(font-example clean-game-lib)
-target_link_libraries(font-example sfml-main)

@@ -10,4 +10,3 @@ target_include_directories(moving-head PUBLIC
         moving_head
         "${PROJECT_BINARY_DIR}")
 target_link_libraries(moving-head clean-game-lib)
-target_link_libraries(moving-head sfml-main)
