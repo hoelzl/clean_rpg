@@ -62,9 +62,7 @@ private:
 template <typename AppT>
 class DefaultAppConfigBuilder
     : public AppConfigBuilder<AppT, AppConfig<AppT>,
-                              AppConfigBuilder<AppT, AppConfig<AppT>,
-                                               DefaultAppConfigBuilder<AppT>>> {
-};
+                              DefaultAppConfigBuilder<AppT>> {};
 
 } // namespace cg
 #endif // CLEAN_GAME_LIB_APP_APP_CONFIG_HPP
