@@ -1,5 +1,8 @@
 // Copyright (c) 2021 Dr. Matthias Hölzl. See file LICENSE.md.
 
+#ifndef CLEAN_RPG_GRIDWORLD_MAP_DATA_HPP
+#define CLEAN_RPG_GRIDWORLD_MAP_DATA_HPP
+
 #include "layer.hpp"
 #include <array>
 #include <string>
@@ -13,5 +16,7 @@ using TextureNameArray = std::array<std::string_view, numLayers>;
 using TextureArray     = std::array<Layer<dimW, dimH>, numLayers>;
 
 [[maybe_unused]] extern TextureNameArray textures;
-extern TextureArray                      layers;
+extern TextureArray layers;
 } // namespace cr::map_data
+
+#endif

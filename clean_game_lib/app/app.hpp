@@ -16,6 +16,10 @@ namespace cg {
 template <typename DerivedT>
 class App {
 public:
+  virtual ~App()  = default;
+  App(const App&) = delete;
+  App& operator=(const App&) = delete;
+
   static std::unique_ptr<DerivedT> create(AppConfig<DerivedT> ac) {
     auto result{std::unique_ptr<DerivedT>{new DerivedT{ac}}};
     result->init();
@@ -23,12 +27,12 @@ public:
   }
 
   sf::RenderWindow& getMainWindow() { return mainWindow; };
-  ResourceManager&  getResourceManager() { return resourceManager; }
+  ResourceManager& getResourceManager() { return resourceManager; }
 
   sf::Color getBackgroundColor() const { return backgroundColor; }
-  void      setBackgroundColor(sf::Color color) { backgroundColor = color; }
+  void setBackgroundColor(sf::Color color) { backgroundColor = color; }
 
-  int  runEventLoop();
+  int runEventLoop();
   void close();
 
 protected:
@@ -48,7 +52,9 @@ protected:
 private:
   explicit App(AppConfig<DerivedT>& ac)
       : eventDispatcher{std::move(ac.eventDispatcher)},
-        mainWindow{sf::VideoMode{ac.width, ac.height}, ac.title} {}
+        windowHeight{ac.height},
+        windowWidth{ac.width},
+        windowTitle{ac.title} {}
 
   void processPendingEvents();
   void dispatchEvent(const sf::Event& event);
@@ -57,16 +63,20 @@ private:
 
   std::unique_ptr<EventDispatcher<DerivedT>> eventDispatcher{};
 
-  ResourceManager       resourceManager{};
+  ResourceManager resourceManager{};
   RandomNumberGenerator rng{};
 
-  sf::RenderWindow mainWindow;
-  sf::Color        backgroundColor = sf::Color::Black;
+  sf::RenderWindow mainWindow{};
+  unsigned int windowHeight{};
+  unsigned int windowWidth{};
+  std::string windowTitle{};
+  sf::Color backgroundColor = sf::Color::Black;
 };
 
 template <typename DerivedT>
 int App<DerivedT>::runEventLoop() {
   assert(isInitialized);
+  mainWindow.create(sf::VideoMode{windowWidth, windowHeight}, windowTitle);
   while (mainWindow.isOpen()) {
     processPendingEvents();
     renderNextFrame();

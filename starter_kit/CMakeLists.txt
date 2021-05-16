@@ -1,6 +1,6 @@
 project(starter-kit VERSION 0.0.1)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 configure_file(starter_kit_config.hpp.in starter_kit_config.hpp)

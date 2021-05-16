@@ -4,24 +4,31 @@
 #define CLEAN_GAME_LIB_APP_APP_CONFIG_HPP
 
 #include "event_dispatcher.hpp"
+#include <cassert>
+#include <iostream>
 
 namespace cg {
 
 template <typename AppT>
-class AppConfig {
-public:
+struct AppConfig {
   std::unique_ptr<EventDispatcher<AppT>> eventDispatcher{};
-  unsigned int                           width{800};
-  unsigned int                           height{600};
-  std::string                            title{"Clean Game"};
+  unsigned int width{800};
+  unsigned int height{600};
+  std::string title{"Clean Game"};
 };
 
 template <typename AppT, typename AppConfigT, typename BuilderT>
-class AppConfigBuilder : public AppConfig<AppT> {
+class AppConfigBuilder {
 public:
   using SelfT = AppConfigBuilder<AppT, AppConfigT, BuilderT>;
 
+  AppConfigBuilder()                        = default;
+  virtual ~AppConfigBuilder()               = default;
+  AppConfigBuilder(const AppConfigBuilder&) = delete;
+  AppConfigBuilder& operator=(const AppConfigBuilder&) = delete;
+
   SelfT& setEventDispatcher(std::unique_ptr<EventDispatcher<AppT>> ed) {
+    assert(ed);
     config.eventDispatcher = std::move(ed);
     return static_cast<SelfT&>(*this);
   }

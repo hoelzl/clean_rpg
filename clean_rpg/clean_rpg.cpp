@@ -3,26 +3,18 @@
 #include "app/app.hpp"
 #include "clean_rpg_app.hpp"
 #include "clean_rpg_config.hpp"
-#include "clean_rpg_event_dispatcher.hpp"
+#include "default_clean_rpg_builder.hpp"
 #include <iostream>
 
-#include "gridworld/map_data.hpp"
+using namespace std::string_literals;
 
 void printProgramInfo() {
   std::cout << "Clean RPG Version " << CleanRpgVersion::version_string()
             << " is up and running!" << std::endl;
 }
 
-void createConfiguration(
-    cg::DefaultAppConfigBuilder<cr::CleanRpgApp>& builder) {
-  builder.setEventDispatcher(std::make_unique<cr::CleanRpgEventDispatcher>())
-      .setHeight(800)
-      .setWidth(1200)
-      .setTitle("Clean RPG");
-}
-
 cr::Layer<2, 3> myLayer{{{{1, 2}, {3, 4}, {5, 6}}}};
-std::size_t     computeLayerSum() {
+std::size_t computeLayerSum() {
   size_t sum{0L};
   for (int idx : myLayer) {
     sum += idx;
@@ -55,9 +47,8 @@ int main() {
   printProgramInfo();
   printArrayInfo();
   printUseConcepts();
-  cg::DefaultAppConfigBuilder<cr::CleanRpgApp> builder{};
-  createConfiguration(builder);
+  auto builder{cr::createDefaultBuilder()};
   std::unique_ptr<cr::CleanRpgApp> app{
-      cr::CleanRpgApp::create(builder.getConfig())};
+      cr::CleanRpgApp::create(builder->getConfig())};
   return app->runEventLoop();
 }
